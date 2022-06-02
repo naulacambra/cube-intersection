@@ -18,9 +18,17 @@ namespace CubeIntersection.Core.Entities
         {
         }
 
-        public bool Collides(BodyBase body)
+        public bool Collides(IBodyCollider body)
         {
-            throw new NotImplementedException();
+            var distanceX = Math.Abs(this.X - body.X);
+            var distanceY = Math.Abs(this.Y - body.Y);
+            var distanceZ = Math.Abs(this.Z - body.Z);
+
+            var xAxis = distanceX < (this.Width / 2) + (body.Width / 2);
+            var yAxis = distanceY < (this.Height / 2) + (body.Height / 2);
+            var zAxis = distanceZ < (this.Depth / 2) + (body.Depth / 2);
+
+            return xAxis && yAxis && zAxis;
         }
     }
 }
