@@ -4,7 +4,7 @@
     {
         public TwoBodyCollider GetTwoBodyCollider()
         {
-            return new TwoBodyCollider(null, null);
+            return new TwoBodyCollider();
         }
     }
 }

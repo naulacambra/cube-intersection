@@ -9,7 +9,7 @@ namespace CubeIntersection.Application.Tests
         {
             var collider = Builder.GetTwoBodyCollider();
 
-            Assert.Throws<NonValidBodyException>(() => collider.Collides());           
+            Assert.Throws<ArgumentNullException>(() => collider.SetBodies(null, null));           
         }
     }
 }
