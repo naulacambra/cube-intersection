@@ -1,5 +1,4 @@
-﻿using CubeIntersection.Core.Entities.Base;
-using CubeIntersection.Core.Interfaces;
+﻿using CubeIntersection.Core.Interfaces;
 
 namespace CubeIntersection.Core.Entities
 {
