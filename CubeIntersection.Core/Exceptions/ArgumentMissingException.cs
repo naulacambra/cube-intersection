@@ -6,5 +6,10 @@
         {
 
         }
+
+        public ArgumentMissingException(string message, string paramName) : base(message, paramName)
+        {
+
+        }
     }
 }

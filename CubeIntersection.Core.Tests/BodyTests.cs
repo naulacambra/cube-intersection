@@ -9,9 +9,27 @@ namespace CubeIntersection.Core.Tests
         }
 
         [Fact]
+        public void Body_Constructor_Null_Position()
+        {
+            ArgumentNullException exception = Assert.Throws<ArgumentNullException>(() => new Body(null, ""));
+
+            Assert.Equal("Position", exception.ParamName);
+        }
+
+        [Fact]
+        public void Body_Constructor_Null_Size()
+        {
+            ArgumentNullException exception = Assert.Throws<ArgumentNullException>(() => new Body("", null));
+
+            Assert.Equal("Size", exception.ParamName);
+        }
+
+        [Fact]
         public void Body_Constructor_Empty_Strings()
         {
-            Assert.Throws<ArgumentException>(() => new Body("", ""));
+            ArgumentException exception = Assert.Throws<ArgumentException>(() => new Body("", ""));
+
+            Assert.Equal("Position", exception.ParamName);
         }
 
         [Fact]

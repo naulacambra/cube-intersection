@@ -12,14 +12,17 @@ namespace CubeIntersection.Core.Entities
 
         public Body(string position, string size)
         {
-            var positionSplit = position.Split(", ").Select(i => i.Trim()).ToArray();
-            if (positionSplit.Length != 3) throw new ArgumentException("Position must be defined by three parameters");
+            ArgumentNullException.ThrowIfNull(position, "Position");
+            ArgumentNullException.ThrowIfNull(size, "Size");
+
+            var positionSplit = position.Split(",").Select(i => i.Trim()).ToArray();
+            if (positionSplit.Length != 3) throw new ArgumentException("Position must be defined by three parameters", "Position");
 
             this.ChangePosition(positionSplit[0], positionSplit[1], positionSplit[2]);
 
-            var sizeSplit = size.Split(", ").Select(i => i.Trim()).ToArray();
-            if (sizeSplit.Length < 1) throw new ArgumentMissingException("Size must be defined by at least one parameter");
-            if (sizeSplit.Length == 2) throw new ArgumentMissingException("Size cannot be defined by only two parameters");
+            var sizeSplit = size.Split(",").Select(i => i.Trim()).ToArray();
+            if (sizeSplit.Length < 1) throw new ArgumentMissingException("Size must be defined by at least one parameter", "Size");
+            if (sizeSplit.Length == 2) throw new ArgumentMissingException("Size cannot be defined by only two parameters", "Size");
 
             if (size.Length == 1) this.ChangeSize(sizeSplit[0], sizeSplit[0], sizeSplit[0]);
             else this.ChangeSize(sizeSplit[0], sizeSplit[1], sizeSplit[2]);
@@ -65,6 +68,11 @@ namespace CubeIntersection.Core.Entities
             this.Width = width;
             this.Height = height;
             this.Depth = depth;
+        }
+
+        public override string ToString()
+        {
+            return $"Position: [{this.X}, {this.Y}, {this.Z}]\nSize: [{this.Width}, {this.Height}, {this.Depth}]";
         }
     }
 }
