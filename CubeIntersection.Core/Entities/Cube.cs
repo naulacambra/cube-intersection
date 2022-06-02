@@ -33,7 +33,17 @@ namespace CubeIntersection.Core.Entities
 
         public float Intersection(IBodyCollider body)
         {
-            return 0.0f;
+            if (!this.Collides(body)) return 0.0f;
+
+            var intersectionX = Math.Abs(this.X - body.X);
+            var intersectionY = Math.Abs(this.Y - body.Y);
+            var intersectionZ = Math.Abs(this.Z - body.Z);
+
+            var intersectionWidth = Math.Abs(this.Width - intersectionX);
+            var intersectionHeight = Math.Abs(this.Height - intersectionY);
+            var intersectionDepth = Math.Abs(this.Depth - intersectionZ);
+
+            return intersectionWidth * intersectionHeight * intersectionDepth;
         }
     }
 }

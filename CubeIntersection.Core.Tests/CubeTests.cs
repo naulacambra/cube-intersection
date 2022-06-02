@@ -138,8 +138,28 @@ namespace CubeIntersection.Core.Tests
             var a = new Cube(0, 0, 0, 10, 10, 10);
             var b = new Cube(0, 0, 0, 10, 10, 10);
 
-            Assert.Equal(10.0f * 10.0f * 10.0f, a.Intersection(b));
-            Assert.Equal(10.0f * 10.0f * 10.0f, b.Intersection(a));
+            Assert.Equal(a.Width * a.Height * a.Depth, a.Intersection(b));
+            Assert.Equal(b.Width * b.Height * b.Depth, b.Intersection(a));
+        }
+
+        [Fact]
+        public void Cube_Intersects_Half_Volume()
+        {
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(0, 5, 0, 10, 10, 10);
+
+            Assert.Equal((a.Width * a.Height * a.Depth) / 2, a.Intersection(b));
+            Assert.Equal((b.Width * b.Height * b.Depth) / 2, b.Intersection(a));
+        }
+
+        [Fact]
+        public void Cube_Intersects_Quarter_Volume()
+        {
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(0, 5, 5, 10, 10, 10);
+
+            Assert.Equal((a.Width * a.Height * a.Depth) / 4, a.Intersection(b));
+            Assert.Equal((b.Width * b.Height * b.Depth) / 4, b.Intersection(a));
         }
 
         [Fact]
@@ -157,6 +177,16 @@ namespace CubeIntersection.Core.Tests
         {
             var a = new Cube(0, 0, 0, 10, 10, 10);
             var b = new Cube(20, 0, 0, 10, 10, 10);
+
+            Assert.Equal(0.0f, a.Intersection(b));
+            Assert.Equal(0.0f, b.Intersection(a));
+        }
+
+        [Fact]
+        public void Cube_Intersects_0_Units_With_Adjacent()
+        {
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(10, 10, 10, 10, 10, 10);
 
             Assert.Equal(0.0f, a.Intersection(b));
             Assert.Equal(0.0f, b.Intersection(a));
