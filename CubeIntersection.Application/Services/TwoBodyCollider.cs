@@ -62,5 +62,19 @@ namespace CubeIntersection.Application.Services
 
             return false;
         }
+
+        /// <summary>
+        /// Returns intersection volume between collider's bodies
+        /// </summary>
+        /// <returns>Intersection volume</returns>
+        /// <exception cref="NonValidBodyException">Thrown if any collider's body are not valid</exception>
+        public float Intersection()
+        {
+            if (!this.ValidateBodies()) throw new NonValidBodyException();
+
+            if (!this.A.Collides(this.B)) return 0.0f;
+
+            return A.Intersection(this.B);
+        }
     }
 }

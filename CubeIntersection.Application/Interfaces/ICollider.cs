@@ -7,5 +7,7 @@ namespace CubeIntersection.Application.Interfaces
         bool ValidateBodies();
 
         bool Collides();
+
+        float Intersection();
     }
 }

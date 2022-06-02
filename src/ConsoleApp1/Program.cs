@@ -22,4 +22,5 @@ Console.WriteLine(body1.ToString());
 Console.WriteLine(body2.ToString());
 
 var collider = new TwoBodyCollider(body1, body2);
-Console.WriteLine("The bodies collide?: {0}", collider.Collides().ToString());
+Console.WriteLine("The bodies collide?: {0}", collider.Collides());
+Console.WriteLine("Intersection volume: {0}u cubics", collider.Intersection());
