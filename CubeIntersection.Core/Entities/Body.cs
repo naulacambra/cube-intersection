@@ -5,6 +5,11 @@ namespace CubeIntersection.Core.Entities
 {
     public class Body : BodyBase
     {
+        public Body()
+        {
+
+        }
+
         public Body(string position, string size)
         {
             var positionSplit = position.Split(", ").Select(i => i.Trim()).ToArray();
