@@ -31,5 +31,7 @@
         /// Body's depth
         /// </summary>
         public float Depth { get; set; } = 0.0f;
+
+        public abstract override string ToString();
     }
 }
