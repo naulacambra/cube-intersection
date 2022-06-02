@@ -9,26 +9,58 @@ namespace CubeIntersection.Application.Services
     /// </summary>
     public class TwoBodyCollider : ICollider
     {
-        public TwoBodyCollider(IBodyCollider a, IBodyCollider b)
+        public TwoBodyCollider()
         {
+
+        }
+
+        public TwoBodyCollider(IBodyCollider? a, IBodyCollider? b) : base()
+        {
+            ArgumentNullException.ThrowIfNull(a);
+            ArgumentNullException.ThrowIfNull(b);
+
             this.A = a;
             this.B = b;
         }
 
-        public IBodyCollider A { get; set; }
+        public IBodyCollider A { get; private set; }
 
-        public IBodyCollider B { get; set; }
+        public IBodyCollider B { get; private set; }
 
-        public bool ValidateBodies()
+        public void SetBodies(IBodyCollider? a, IBodyCollider? b)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(a);
+            ArgumentNullException.ThrowIfNull(b);
+
+            this.A = a;
+            this.B = b;
         }
 
+        /// <summary>
+        /// Validate collider's bodies are valid
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NonValidBodyException">Thrown if any collider's body are null</exception>
+        public bool ValidateBodies()
+        {
+            ArgumentNullException.ThrowIfNull(this.A, nameof(this.A));
+            ArgumentNullException.ThrowIfNull(this.B, nameof(this.B));
+
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if collider's bodies collides between them
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NonValidBodyException">Thrown if any collider's body are not valid</exception>
         public bool Collides()
         {
             if (!this.ValidateBodies()) throw new NonValidBodyException();
 
-            throw new NotImplementedException();
+            if (this.A.Collides(this.B)) return true;
+
+            return false;
         }
     }
 }
