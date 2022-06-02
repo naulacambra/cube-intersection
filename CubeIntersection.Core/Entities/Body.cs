@@ -1,8 +1,9 @@
 ﻿using CubeIntersection.Core.Entities.Base;
+using CubeIntersection.Core.Exceptions;
 
 namespace CubeIntersection.Core.Entities
 {
-    internal class Body : BodyBase
+    public class Body : BodyBase
     {
         public Body(string position, string size)
         {
@@ -12,8 +13,8 @@ namespace CubeIntersection.Core.Entities
             this.ChangePosition(positionSplit[0], positionSplit[1], positionSplit[2]);
 
             var sizeSplit = size.Split(", ").Select(i => i.Trim()).ToArray();
-            if (sizeSplit.Length < 1) throw new ArgumentException("Size must be defined by at least one parameter");
-            if (sizeSplit.Length == 2) throw new ArgumentException("Size cannot be defined by only two parameters");
+            if (sizeSplit.Length < 1) throw new ArgumentMissingException("Size must be defined by at least one parameter");
+            if (sizeSplit.Length == 2) throw new ArgumentMissingException("Size cannot be defined by only two parameters");
 
             if (size.Length == 1) this.ChangeSize(sizeSplit[0], sizeSplit[0], sizeSplit[0]);
             else this.ChangeSize(sizeSplit[0], sizeSplit[1], sizeSplit[2]);
@@ -21,10 +22,6 @@ namespace CubeIntersection.Core.Entities
 
         public Body(int x, int y, int z, float width, float height, float depth)
         {
-            if (width < 0) throw new ArgumentOutOfRangeException(nameof(Body.Width), "Width cannot be negative");
-            if (height < 0) throw new ArgumentOutOfRangeException(nameof(Body.Height), "Height cannot be negative");
-            if (depth < 0) throw new ArgumentOutOfRangeException(nameof(Body.Depth), "Depth cannot be negative");
-
             this.ChangePosition(x, y, z);
             this.ChangeSize(width, height, depth);
         }
@@ -56,6 +53,10 @@ namespace CubeIntersection.Core.Entities
 
         private void ChangeSize(float width, float height, float depth)
         {
+            if (width < 0) throw new ArgumentOutOfRangeException(nameof(Body.Width), "Width cannot be negative");
+            if (height < 0) throw new ArgumentOutOfRangeException(nameof(Body.Height), "Height cannot be negative");
+            if (depth < 0) throw new ArgumentOutOfRangeException(nameof(Body.Depth), "Depth cannot be negative");
+
             this.Width = width;
             this.Height = height;
             this.Depth = depth;
