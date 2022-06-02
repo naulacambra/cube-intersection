@@ -2,7 +2,7 @@
 
 namespace CubeIntersection.Core.Interfaces
 {
-    public interface ICollider
+    public interface IBodyCollider
     {
         bool Collides(BodyBase body);
     }

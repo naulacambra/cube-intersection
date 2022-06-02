@@ -3,7 +3,7 @@ using CubeIntersection.Core.Interfaces;
 
 namespace CubeIntersection.Core.Entities
 {
-    public class Cube : Body, ICollider
+    public class Cube : Body, IBodyCollider
     {
         public Cube()
         {
