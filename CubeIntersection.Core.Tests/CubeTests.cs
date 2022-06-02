@@ -3,27 +3,103 @@ namespace CubeIntersection.Core.Tests
     public class CubeTests
     {
         [Fact]
-        public void Cube_Constructor_Negative_Size()
+        public void Cube_Collides_With_Same_Position()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Cube(0, 0, 0, -1, -1, -1));
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(0, 0, 0, 10, 10, 10);
+
+            Assert.True(a.Collides(b));
+            Assert.True(b.Collides(a));
         }
 
         [Fact]
-        public void Cube_Constructor_Empty_Strings()
+        public void Cube_Collides_In_X_Axis()
         {
-            Assert.Throws<ArgumentException>(() => new Cube("", ""));
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(5, 0, 0, 10, 10, 10);
+
+            Assert.True(a.Collides(b));
+            Assert.True(b.Collides(a));
         }
 
         [Fact]
-        public void Cube_Constructor_Negative_Size_Strings()
+        public void Cube_Collides_Not_In_X_Axis()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Cube("0, 0, 0", "-1, -1, -1"));
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(20, 0, 0, 10, 10, 10);
+
+            Assert.False(a.Collides(b));
+            Assert.False(b.Collides(a));
         }
 
         [Fact]
-        public void Cube_Constructor_Missing_Strings_Arguments()
+        public void Cube_Collides_In_Y_Axis()
         {
-            Assert.Throws<ArgumentMissingException>(() => new Cube("0, 0, 0", "-1, -1"));
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(0, 5, 0, 10, 10, 10);
+
+            Assert.True(a.Collides(b));
+            Assert.True(b.Collides(a));
+        }
+
+        [Fact]
+        public void Cube_Collides_Not_In_Y_Axis()
+        {
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(0, 20, 0, 10, 10, 10);
+
+            Assert.False(a.Collides(b));
+            Assert.False(b.Collides(a));
+        }
+
+        [Fact]
+        public void Cube_Collides_In_Z_Axis()
+        {
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(0, 0, 5, 10, 10, 10);
+
+            Assert.True(a.Collides(b));
+            Assert.True(b.Collides(a));
+        }
+
+        [Fact]
+        public void Cube_Collides_Not_In_Z_Axis()
+        {
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(0, 0, 20, 10, 10, 10);
+
+            Assert.False(a.Collides(b));
+            Assert.False(b.Collides(a));
+        }
+
+        [Fact]
+        public void Cube_Not_Collides_Adjacent_In_X_Axis()
+        {
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(10, 0, 0, 10, 10, 10);
+
+            Assert.False(a.Collides(b));
+            Assert.False(b.Collides(a));
+        }
+
+        [Fact]
+        public void Cube_Not_Collides_Adjacent_In_Y_Axis()
+        {
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(0, 10, 0, 10, 10, 10);
+
+            Assert.False(a.Collides(b));
+            Assert.False(b.Collides(a));
+        }
+
+        [Fact]
+        public void Cube_Not_Collides_Adjacent_In_Z_Axis()
+        {
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(0, 0, 10, 10, 10, 10);
+
+            Assert.False(a.Collides(b));
+            Assert.False(b.Collides(a));
         }
     }
 }
