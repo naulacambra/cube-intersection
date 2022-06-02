@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CubeIntersection.Application\CubeIntersection.Application.csproj" />
     <ProjectReference Include="..\..\CubeIntersection.Core\CubeIntersection.Core.csproj" />
   </ItemGroup>
 

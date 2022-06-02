@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using CubeIntersection.Application.Services;
 using CubeIntersection.Core.Entities;
 
 Console.WriteLine("Cube instersection");
@@ -19,3 +20,6 @@ var body2 = new Cube(positionBody2, sizeBody2);
 
 Console.WriteLine(body1.ToString());
 Console.WriteLine(body2.ToString());
+
+var collider = new TwoBodyCollider(body1, body2);
+Console.WriteLine("The bodies collide?: {0}", collider.Collides().ToString());
