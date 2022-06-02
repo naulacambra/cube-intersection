@@ -13,7 +13,7 @@ namespace CubeIntersection.Core.Tests
         {
             ArgumentNullException exception = Assert.Throws<ArgumentNullException>(() => new Body(null, ""));
 
-            Assert.Equal("Position", exception.ParamName);
+            Assert.Equal("position", exception.ParamName);
         }
 
         [Fact]
@@ -21,7 +21,7 @@ namespace CubeIntersection.Core.Tests
         {
             ArgumentNullException exception = Assert.Throws<ArgumentNullException>(() => new Body("", null));
 
-            Assert.Equal("Size", exception.ParamName);
+            Assert.Equal("size", exception.ParamName);
         }
 
         [Fact]
@@ -29,7 +29,7 @@ namespace CubeIntersection.Core.Tests
         {
             ArgumentException exception = Assert.Throws<ArgumentException>(() => new Body("", ""));
 
-            Assert.Equal("Position", exception.ParamName);
+            Assert.Equal("position", exception.ParamName);
         }
 
         [Fact]
