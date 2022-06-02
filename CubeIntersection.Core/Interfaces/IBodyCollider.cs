@@ -2,8 +2,8 @@
 
 namespace CubeIntersection.Core.Interfaces
 {
-    public interface IBodyCollider
+    public interface IBodyCollider : IBody
     {
-        bool Collides(BodyBase body);
+        bool Collides(IBodyCollider body);
     }
 }
