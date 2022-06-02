@@ -30,5 +30,10 @@ namespace CubeIntersection.Core.Entities
 
             return xAxis && yAxis && zAxis;
         }
+
+        public float Intersection(IBodyCollider body)
+        {
+            return 0.0f;
+        }
     }
 }

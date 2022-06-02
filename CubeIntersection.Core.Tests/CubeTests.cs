@@ -131,5 +131,35 @@ namespace CubeIntersection.Core.Tests
             Assert.False(a.Collides(b));
             Assert.False(b.Collides(a));
         }
+
+        [Fact]
+        public void Cube_Intersects_Full_Volume()
+        {
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(0, 0, 0, 10, 10, 10);
+
+            Assert.Equal(10.0f * 10.0f * 10.0f, a.Intersection(b));
+            Assert.Equal(10.0f * 10.0f * 10.0f, b.Intersection(a));
+        }
+
+        [Fact]
+        public void Cube_Intersects_1_unit()
+        {
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(9, 9, 9, 10, 10, 10);
+
+            Assert.Equal(1.0f, a.Intersection(b));
+            Assert.Equal(1.0f, b.Intersection(a));
+        }
+
+        [Fact]
+        public void Cube_Intersects_0_Units_With_Non_Colliding()
+        {
+            var a = new Cube(0, 0, 0, 10, 10, 10);
+            var b = new Cube(20, 0, 0, 10, 10, 10);
+
+            Assert.Equal(0.0f, a.Intersection(b));
+            Assert.Equal(0.0f, b.Intersection(a));
+        }
     }
 }
